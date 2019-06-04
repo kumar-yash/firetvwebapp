@@ -12,9 +12,10 @@ const loadHLSForSupportingBrowser = videoElement => {
 
 const loadHLSForUnsupportingBrowser = videoElement => {
   videoElement.src = liveStreamMockUrl;
-  videoElement.addEventListener("loadedmetadata", () => {
-    videoElement.play();
-  });
+  videoElement.play();
+  // videoElement.addEventListener("loadedmetadata", () => {
+  //   videoElement.play();
+  // });
 };
 
 export const addLiveStreamSupport = videoElement => {
@@ -26,7 +27,8 @@ export const addLiveStreamSupport = videoElement => {
 };
 
 export const removeLoadMetadataEventListner = videoElement => {
-  videoElement.addEventListener("loadedmetadata", function() {
-    videoElement.play();
-  });
+  if (!Hls.isSupported())
+    videoElement.addEventListener("loadedmetadata", function() {
+      videoElement.play();
+    });
 };

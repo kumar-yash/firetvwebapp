@@ -28,6 +28,9 @@ class PlayerView extends Component {
     this.playPauseVideo = this.playPauseVideo.bind(this);
   }
   componentDidMount() {
+    console.log("mounted");
+    this.refs.videoRef.currentTime = 0;
+    this.refs.seekBarRef.value = 0;
     window.addEventListener("keyup", e => {
       this.handleVideoKeyEvents(e);
     });
@@ -37,8 +40,15 @@ class PlayerView extends Component {
     }
   }
 
-  componentWillUnmount() {}
+  componentDidUpdate(props) {
+    console.log("dsagfsfgsdfg", this.props, props);
+  }
 
+  componentWillUnmount() {
+    window.removeEventListener("keyup", e => {
+      this.handleVideoKeyEvents(e);
+    });
+  }
   handleVideoKeyEvents = e => {
     console.log("asdfasdfsdf", e);
     if (e.keyCode === remoteActions.SELECT) {
@@ -65,13 +75,6 @@ class PlayerView extends Component {
       this.playPauseVideo();
     }
   };
-
-  componentWillUnmount() {
-    if (this.props.live) {
-      const video = document.getElementById("liveVideo");
-      removeLoadMetadataEventListner(video);
-    }
-  }
 
   playPauseVideo = () => {
     if (this.refs.videoRef.paused) {

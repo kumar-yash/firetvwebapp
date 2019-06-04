@@ -40,17 +40,10 @@ export default class App extends Component {
     return (
       <div id="app" onKeyDown={e => console.log(e)}>
         <Provider store={store}>
-          <Head>
-            <link
-              href="https://vjs.zencdn.net/7.5.4/video-js.css"
-              rel="stylesheet"
-            />
-          </Head>
           <Header />
-
           <Router onChange={this.handleRoute}>
-            <Home path="/" />
-            <PlayerView live={false} path="/videoplayer" />
+            <Home key="0" path="/" />
+            <PlayerView key="1" live={false} path="/videoplayer" />
             {/* <Profile path="/profile/" user="me" />
           <Profile path="/profile/:user" /> */}
           </Router>

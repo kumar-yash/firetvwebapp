@@ -7,7 +7,6 @@ class Home extends Component {
   scrollToTop = e => {
     const { parentElement } = e.currentTarget;
     const { offsetTop } = e.currentTarget;
-    debugger;
     console.log(
       e.currentTarget,
       "offsetTop=",

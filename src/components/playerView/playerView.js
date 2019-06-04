@@ -6,6 +6,7 @@ import {
 // const videoUrl = require("./sample_video.mp4");
 import styles from "./playerView.scss";
 import { connect } from "preact-redux";
+import linkRef from "linkref";
 
 const remoteActions = {
   UP: 38,
@@ -22,7 +23,6 @@ const remoteActions = {
 class PlayerView extends Component {
   constructor(props) {
     super(props);
-    debugger;
     // this.videoRef = React.createRef();
     // this.seekBarRef = React.createRef();
     this.playPauseVideo = this.playPauseVideo.bind(this);
@@ -59,68 +59,65 @@ class PlayerView extends Component {
   }
 
   playPauseVideo = () => {
-    if (this.videoRef.paused) {
-      this.videoRef.play();
-      this.videoRef.innerHTML = "Pause";
+    if (this.refs.videoRef.paused) {
+      this.refs.videoRef.play();
+      this.refs.videoRef.innerHTML = "Pause";
     } else {
-      this.videoRef.pause();
-      this.videoRef.innerHTML = "Play";
+      this.refs.videoRef.pause();
+      this.refs.videoRef.innerHTML = "Play";
     }
   };
 
   increaseSeekBarByTenSeconds = () => {
-    const videoRef = this.videoRef;
-    const seekBarRef = this.seekBarRef;
-    debugger;
+    const videoRef = this.refs.videoRef;
+    const seekBarRef = this.refs.seekBarRef;
     const time = videoRef.duration * (seekBarRef.value / 100);
     videoRef.currentTime = time + 10;
   };
 
   decreaseSeekBarByTenSeconds = () => {
-    const videoRef = this.videoRef;
-    const seekBarRef = this.seekBarRef;
-    debugger;
+    const videoRef = this.refs.videoRef;
+    const seekBarRef = this.refs.seekBarRef;
     const time = videoRef.duration * (seekBarRef.value / 100);
     videoRef.currentTime = time - 10;
   };
 
   handleSeekbarChange = seekBar => {
-    debugger;
-    console.log(seekBar);
-    const videoRef = this.videoRef;
-    debugger;
+    console.log(seekBar, seekBar.target.value);
+    const videoRef = this.refs.videoRef;
     const time = videoRef.duration * (seekBar.target.value / 100);
     videoRef.currentTime = time;
   };
 
   handleVideoTimeUpdate = () => {
-    const videoRef = this.videoRef;
-    const seekBarRef = this.seekBarRef;
+    const videoRef = this.refs.videoRef;
+    const seekBarRef = this.refs.seekBarRef;
     const value = (100 / videoRef.duration) * videoRef.currentTime;
     seekBarRef.value = value;
   };
 
   handleMouseDown = () => {
-    const videoRef = this.videoRef;
+    const videoRef = this.refs.videoRef;
     videoRef.pause();
   };
 
   handleMouseUp = () => {
-    const videoRef = this.videoRef;
+    const videoRef = this.refs.videoRef;
     videoRef.play();
   };
 
   render(props) {
-    console.log(this.seekBarRef);
+    // console.log(this.refs.seekBarRef);
     const { src } = props;
-    if (this.seekBarRef) {
-      console.log(this.seekBarRef.value);
+    if (this.refs && this.refs.seekBarRef) {
+      console.log(this.refs.seekBarRef.value);
     }
     console.log(src);
     return (
       <div>
         {!props.live ? (
           <video
+            key="wert"
             onKeyUp={e => {
               console.log(e);
             }}
@@ -134,7 +131,8 @@ class PlayerView extends Component {
               width: "100%",
               zIndex: 9
             }}
-            ref={videoRef => (this.videoRef = videoRef)}
+            // ref={videoRef => (this.videoRef = videoRef)}
+            ref={linkRef(this, "videoRef")}
             // src={require("./sample_video.mp4")}
             // src={src}
             // src="https://video-dev.github.io/streams/x36xhzz/x36xhzz.m3u8"
@@ -144,6 +142,7 @@ class PlayerView extends Component {
           </video>
         ) : (
           <video
+            key="sg"
             onKeyUp={e => {
               console.log(e);
             }}
@@ -155,7 +154,8 @@ class PlayerView extends Component {
               width: "100%",
               zIndex: 9
             }}
-            ref={videoRef => (this.videoRef = videoRef)}
+            ref={linkRef(this, "videoRef")}
+            // ref={videoRef => (this.videoRef = videoRef)}
             id="liveVideo"
           />
         )}
@@ -170,8 +170,9 @@ class PlayerView extends Component {
           <button style={{ width: "90vw", padding: "1rem" }}>
             <input
               style={{ width: "100%" }}
-              ref={seekBarRef => (this.seekBarRef = seekBarRef)}
+              ref={linkRef(this, "seekBarRef")}
               onChange={this.handleSeekbarChange}
+              onInput={this.handleSeekbarChange}
               onMouseDown={this.handleMouseDown}
               onMouseUp={this.handleMouseUp}
               type="range"

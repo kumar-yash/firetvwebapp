@@ -176,7 +176,11 @@ class ShovelerView extends Component {
           maxWidth: "100vw",
           //   height: "30vh",
           overflowX: "scroll",
-          marginTop: "1rem"
+          //   overflowX: "visible",
+          paddingLeft: "3rem",
+
+          marginTop: "1rem",
+          height: "22rem"
         }}
       >
         {items.map((item, state, context) => (
@@ -199,7 +203,7 @@ class ShovelerView extends Component {
               className={styles.imageClass}
               src={
                 item.src ||
-                "https://res.cloudinary.com/www-curefit-com/image/upload/w_300,ar_1.85,fl_progressive,f_auto,q_auto/dpr_2/v1/cult-media/v2web/workouts/22_id/D_CLP_2019-04-02T12:55:54.538Z.png"
+                "https://res.cloudinary.com/www-curefit-com/image/upload/w_150,ar_1.85,fl_progressive,f_auto,q_auto/dpr_2/v1/cult-media/v2web/workouts/22_id/D_CLP_2019-04-02T12:55:54.538Z.png"
               }
               alt="logo"
             />

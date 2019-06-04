@@ -22,11 +22,12 @@
     // width: 100%;
   }
   &:focus {
-    position: relative;
+    transform: scale(1.2);
+    // position: relative;
     // width: 45vw;
     // opacity: 1;
     .imageClass {
-      border: 5px solid #fc2e71;
+      border: 5px solid whitesmoke;
       //   width: 100%;
       //   border: 5px solid gray;
     }

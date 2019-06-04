@@ -20,7 +20,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div style={{ height: "calc(100vh - 3rem)", overflow: "auto" }}>
+      <div style={{ height: "calc(100vh - 6rem)", overflow: "auto" }}>
         <button onFocusCapture={this.scrollToTop}>
           <ShovelerView
             live={true}

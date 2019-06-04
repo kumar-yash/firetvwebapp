@@ -6,8 +6,7 @@ import styles from "./shovelerView.scss";
 import { route } from "preact-router";
 import { setVideoPlayerData } from "../../actions/videoActions";
 import { connect } from "preact-redux";
-
-import $ from "jquery";
+import { animateTo } from "../../utils/windowsUtility";
 
 // const videoImg = require("../../l11.jpg");
 
@@ -95,17 +94,49 @@ class ShovelerView extends Component {
   //     );
   //   };
 
+  //   animateTo = (elem, style, unit, from, to, time, prop) => {
+  //     if (!elem) {
+  //       return;
+  //     }
+  //     const start = new Date().getTime(),
+  //       timer = setInterval(() => {
+  //         const step = Math.min(1, (new Date().getTime() - start) / time);
+  //         if (prop) {
+  //           elem[style] = from + step * (to - from) + unit;
+  //         } else {
+  //           elem.style[style] = from + step * (to - from) + unit;
+  //         }
+  //         if (step === 1) {
+  //           clearInterval(timer);
+  //         }
+  //       }, 25);
+  //     if (prop) {
+  //       elem[style] = from + unit;
+  //     } else {
+  //       elem.style[style] = from + unit;
+  //     }
+  //   };
+
   scrollCarousel = e => {
     const { parentElement } = e.currentTarget;
     const { offsetLeft, offsetTop } = e.target;
     console.log(e, offsetTop);
-    $(parentElement).animate(
-      {
-        scrollLeft: offsetLeft - 100
-        // scrollTop: offsetTop - 100
-      },
-      300
+    animateTo(
+      parentElement,
+      "scrollLeft",
+      "",
+      parentElement.scrollLeft,
+      offsetLeft - 100,
+      300,
+      true
     );
+    // $(parentElement).animate(
+    //   {
+    //     scrollLeft: offsetLeft - 100
+    //     // scrollTop: offsetTop - 100
+    //   },
+    //   300
+    // );
   };
 
   handleButtonFocus = (e, item) => {

@@ -11,6 +11,15 @@ import Head from "preact-head";
 import PlayerView from "../components/playerView/playerView";
 
 export default class App extends Component {
+  //   componentDidMount() {
+  //     var video = document.getElementsByTagName("video")[0];
+  //     video.addEventListener("keypress", function(e) {
+  //       console.log(e);
+  //     });
+  //     video.addEventListener("playing", function(e) {
+  //       video.focus();
+  //     });
+  //   }
   /** Gets fired when the route changes.
    *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
    *	@param {string} event.url	The newly routed URL

@@ -28,28 +28,43 @@ class PlayerView extends Component {
     this.playPauseVideo = this.playPauseVideo.bind(this);
   }
   componentDidMount() {
-    const that = this;
     window.addEventListener("keyup", e => {
-      console.log(e);
-      if (e.keyCode === remoteActions.SELECT) {
-        that.playPauseVideo();
-      } else if (e.keyCode === remoteActions.REWIND) {
-        that.decreaseSeekBarByTenSeconds();
-      } else if (e.keyCode === remoteActions.FAST_FORWARD) {
-        that.increaseSeekBarByTenSeconds();
-      } else if (e.keyCode === remoteActions.LEFT) {
-        that.decreaseSeekBarByTenSeconds();
-      } else if (e.keyCode === remoteActions.RIGHT) {
-        that.increaseSeekBarByTenSeconds();
-      } else if (e.keyCode === remoteActions.PLAY_PAUSE) {
-        that.playPauseVideo();
-      }
+      this.handleVideoKeyEvents(e);
     });
     if (this.props.live) {
       const video = document.getElementById("liveVideo");
       addLiveStreamSupport(video);
     }
   }
+
+  componentWillUnmount() {}
+
+  handleVideoKeyEvents = e => {
+    console.log("asdfasdfsdf", e);
+    if (e.keyCode === remoteActions.SELECT) {
+      this.playPauseVideo();
+    } else if (e.keyCode === remoteActions.REWIND) {
+      this.decreaseSeekBarByTenSeconds();
+    } else if (e.keyCode === remoteActions.FAST_FORWARD) {
+      this.increaseSeekBarByTenSeconds();
+    } else if (e.keyCode === remoteActions.LEFT) {
+      this.decreaseSeekBarByTenSeconds();
+    } else if (e.keyCode === remoteActions.RIGHT) {
+      this.increaseSeekBarByTenSeconds();
+    } else if (e.keyCode === remoteActions.PLAY_PAUSE) {
+      this.playPauseVideo();
+    }
+  };
+
+  handleKeyUp = e => {
+    console.log("slgjnasflgnajsfng", e);
+    if (
+      e.keyCode === remoteActions.SELECT ||
+      e.keyCode === remoteActions.PLAY_PAUSE
+    ) {
+      this.playPauseVideo();
+    }
+  };
 
   componentWillUnmount() {
     if (this.props.live) {
@@ -118,9 +133,7 @@ class PlayerView extends Component {
         {!props.live ? (
           <video
             key="wert"
-            onKeyUp={e => {
-              console.log(e);
-            }}
+            onKeyDown={this.handleKeyUp}
             onTimeUpdate={this.handleVideoTimeUpdate}
             id="custom_video"
             //   controls="controls"

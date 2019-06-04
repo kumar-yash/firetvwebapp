@@ -1,26 +1,23 @@
 import { h, Component } from "preact";
 import style from "./style.scss";
 import ShovelerView from "../../components/shovelerView/shovelerView";
-import $ from "jquery";
 import { mockItems } from "../../constants/applicationConstants";
+import { animateTo } from "../../utils/windowsUtility";
 class Home extends Component {
   scrollToTop = e => {
     const { parentElement } = e.currentTarget;
     const { offsetTop } = e.currentTarget;
-    console.log(
-      e.currentTarget,
-      "offsetTop=",
-      offsetTop,
-      "scrollTop=",
-      parentElement.scrollTop
-    );
-    $(parentElement).animate(
-      {
-        scrollTop: offsetTop - 100
-      },
-      300
+    animateTo(
+      parentElement,
+      "scrollTop",
+      "",
+      parentElement.scrollTop,
+      offsetTop - 200,
+      300,
+      true
     );
   };
+
   render() {
     return (
       <div style={{ height: "calc(100vh - 3rem)", overflow: "auto" }}>

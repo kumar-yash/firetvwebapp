@@ -10,24 +10,47 @@
   }
 }
 
+.video_container_scroll {
+  scroll-snap-type: x mandatory;
+  &:focus-within {
+    // transform: translate3d($moveLeft, 0, 0);
+    // transform: translate3d($moveRight, 0, 0);
+    transition: 0.4s all ease;
+  }
+}
+
+.row_inner {
+  &:focus-within {
+    transform: translate3d(125px, 0, 0);
+  }
+}
 .buttonImage {
   //   width: 35vw;
+  scroll-snap-align: left;
   border: none;
   background: transparent;
   outline: none;
-  // opacity: 0.7;
+  transition: 0.4s all ease-in-out;
+  // transform-origin: center left; // opacity: 0.7;
   .imageClass {
-    border-radius: 1rem;
+    // border-radius: 1rem;
     outline: none;
+    opacity: 0.7;
     // width: 100%;
   }
   &:focus {
     transform: scale(1.2);
-    // position: relative;
+    padding: 3rem;
+    transition: 0.4s all ease-in-out;
+    // transform: translate3d($moveRight, 0, 0);
+
+    // transform-origin: center left; // position: relative;
     // width: 45vw;
     // opacity: 1;
     .imageClass {
-      border: 5px solid whitesmoke;
+      opacity: 1;
+      // transform: translate3d($moveRight, 0, 0);
+      // border: 5px solid whitesmoke;
       //   width: 100%;
       //   border: 5px solid gray;
     }

@@ -1,5 +1,4 @@
 import { h, Component } from "preact";
-
 import { liveStreamMockUrl } from "../../constants/applicationConstants";
 import PlayerView from "../playerView/playerView";
 import styles from "./shovelerView.scss";
@@ -126,10 +125,11 @@ class ShovelerView extends Component {
       "scrollLeft",
       "",
       parentElement.scrollLeft,
-      offsetLeft - 100,
+      offsetLeft - 200,
       300,
       true
     );
+
     // $(parentElement).animate(
     //   {
     //     scrollLeft: offsetLeft - 100
@@ -180,24 +180,39 @@ class ShovelerView extends Component {
           paddingLeft: "3rem",
 
           marginTop: "1rem",
-          height: "22rem"
+          height: "20rem",
+          overflowY: "hidden"
+
+          //   position: "relative"
         }}
       >
+        {/* <div
+            style={{
+              position: "absolute",
+              width: "400px",
+              height: "216px",
+              border: "3px solid white",
+              zIndex: "1",
+              top: "52px",
+              left: "55px"
+            }}
+          /> */}
+        {/* <div className={styles.row_inner} style={{ display: "inherit" }}> */}
         {items.map((item, state, context) => (
           <button
             className={styles.buttonImage}
             onFocus={e => this.handleButtonFocus(e, item)}
             onKeyUp={e => this.handleOnKeyUp(e, item)}
-            onClick={e => {
-              //   setVideoPlayerData({ src: liveStreamMockUrl });
-              setVideoPlayerData({
-                src:
-                  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
-              });
+            // onClick={e => {
+            //   //   setVideoPlayerData({ src: liveStreamMockUrl });
+            //   setVideoPlayerData({
+            //     src:
+            //       "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+            //   });
 
-              //   route("/videoplayer");
-              //   this.setState({ playVideo: true, src: liveStreamMockUrl });
-            }}
+            //   //   route("/videoplayer");
+            //   //   this.setState({ playVideo: true, src: liveStreamMockUrl });
+            // }}
           >
             <img
               className={styles.imageClass}
@@ -209,6 +224,7 @@ class ShovelerView extends Component {
             />
           </button>
         ))}
+        {/* </div> */}
         {/* {playVideo && route("/videoplayer", true)} */}
       </div>
     );

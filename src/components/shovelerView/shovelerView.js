@@ -181,6 +181,7 @@ class ShovelerView extends Component {
 
           marginTop: "1rem",
           height: "20rem",
+
           overflowY: "hidden"
 
           //   position: "relative"
@@ -203,16 +204,16 @@ class ShovelerView extends Component {
             className={styles.buttonImage}
             onFocus={e => this.handleButtonFocus(e, item)}
             onKeyUp={e => this.handleOnKeyUp(e, item)}
-            // onClick={e => {
-            //   //   setVideoPlayerData({ src: liveStreamMockUrl });
-            //   setVideoPlayerData({
-            //     src:
-            //       "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
-            //   });
+            onClick={e => {
+              //   setVideoPlayerData({ src: liveStreamMockUrl });
+              setVideoPlayerData({
+                src:
+                  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+              });
 
-            //   //   route("/videoplayer");
-            //   //   this.setState({ playVideo: true, src: liveStreamMockUrl });
-            // }}
+              //   route("/videoplayer");
+              //   this.setState({ playVideo: true, src: liveStreamMockUrl });
+            }}
           >
             <img
               className={styles.imageClass}

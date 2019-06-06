@@ -127,6 +127,7 @@ class PlayerView extends Component {
   render(props) {
     // console.log(this.refs.seekBarRef);
     const { src } = props;
+    console.log(this.refs && this.refs.videoRef);
     if (this.refs && this.refs.seekBarRef) {
       console.log(this.refs.seekBarRef.value);
     }

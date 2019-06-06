@@ -14,14 +14,17 @@ class Header extends Component {
       <header class={style.header}>
         <nav>
           <Link activeClassName={style.active} href="/">
-            Home
+            Cult
           </Link>
           <Link activeClassName={style.active} href="/profile">
-            Me
+            Mind
           </Link>
-          <Link activeClassName={style.active} href="/profile/john">
+          <Link activeClassName={style.active} href="/login">
+            Login
+          </Link>
+          {/* <Link activeClassName={style.active} href="/profile/john">
             John
-          </Link>
+          </Link> */}
         </nav>
       </header>
     );

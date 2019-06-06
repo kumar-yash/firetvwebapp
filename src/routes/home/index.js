@@ -3,9 +3,18 @@ import style from "./style.scss";
 import ShovelerView from "../../components/shovelerView/shovelerView";
 import { mockItems } from "../../constants/applicationConstants";
 import { animateTo } from "../../utils/windowsUtility";
-import Carousel from "../../common/carousel/carousel";
+import BannerWidget from "../../common/banner/banner";
 class Home extends Component {
+  state = {
+    src: ""
+  };
+
   scrollToTop = e => {
+    console.log(e.target.dataset.src);
+    let src = e.target.dataset.src;
+    this.setState({
+      src
+    });
     const { parentElement } = e.currentTarget;
     const { offsetTop } = e.currentTarget;
     console.log(offsetTop, parentElement.scrollTop);
@@ -20,26 +29,12 @@ class Home extends Component {
     );
   };
 
-  render() {
+  render(props, { src }) {
     return (
       <div>
-        <Carousel />
-        <div style={{ height: "calc(100vh - 440px", overflow: "auto" }}>
-          <button
-            onFocusCapture={this.scrollToTop}
-            //   style={{ position: "relative" }}
-          >
-            {/* <div
-            style={{
-              position: "absolute",
-              width: "400px",
-              height: "216px",
-              border: "3px solid white",
-              zIndex: "1",
-              top: "67px",
-              left: "62px"
-            }}
-          /> */}
+        <BannerWidget src={src} />
+        <div style={{ height: "calc(100vh - 440px)", overflow: "auto" }}>
+          <button onFocusCapture={this.scrollToTop}>
             <ShovelerView
               live={true}
               Key="one"

@@ -5,13 +5,6 @@ import { store } from "../redux/app-redux";
 import Header from "./header";
 import { routes } from "../routesConfig";
 
-// Code-splitting is automated for routes
-import Home from "../routes/home";
-import Profile from "../routes/profile";
-import Head from "preact-head";
-import PlayerView from "../components/playerView/playerView";
-import Login from "../components/login/login";
-
 export default class App extends Component {
   /** Gets fired when the route changes.
    *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)

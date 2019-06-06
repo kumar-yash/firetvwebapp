@@ -20,5 +20,11 @@ export const routes = [
     key: "2",
     path: "/login",
     props: {}
+  },
+  {
+    Component: Home,
+    key: "2",
+    path: "/mind",
+    props: {}
   }
 ];

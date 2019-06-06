@@ -16,7 +16,7 @@ class Header extends Component {
           <Link activeClassName={style.active} href="/">
             Cult
           </Link>
-          <Link activeClassName={style.active} href="/profile">
+          <Link activeClassName={style.active} href="/mind">
             Mind
           </Link>
           <Link activeClassName={style.active} href="/login">

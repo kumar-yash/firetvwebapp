@@ -201,6 +201,7 @@ class ShovelerView extends Component {
         {/* <div className={styles.row_inner} style={{ display: "inherit" }}> */}
         {items.map((item, state, context) => (
           <button
+            data-src={item.bannerSource}
             className={styles.buttonImage}
             onFocus={e => this.handleButtonFocus(e, item)}
             onKeyUp={e => this.handleOnKeyUp(e, item)}
